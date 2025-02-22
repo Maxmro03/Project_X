@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWB Management Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">AWB Management Dashboard</h2>
+        
+        <!-- Search Bar -->
+        <form action="/search" method="GET" class="d-flex mb-3">
+            <input class="form-control me-2" type="search" name="query" placeholder="Search by AWB" required>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        
+        <!-- AWB Records Table -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>AWB</th>
+                    <th>MAWB</th>
+                    <th>Date</th>
+                    <th>Freight Forwarder</th>
+                    <th>Amount</th>
+                    <th>Currency</th>
+                    <th>Supplier</th>
+                    <th>Goods Types</th>
+                    <th>Clearance</th>
+                    <th>Boxes</th>
+                    <th>Weight</th>
+                    <th>Unit</th>
+                    <th>Volumetric Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in awb_records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td>{{ record[4] }}</td>
+                    <td>{{ record[5] }}</td>
+                    <td>{{ record[6] }}</td>
+                    <td>{{ record[7] }}</td>
+                    <td>{{ record[8] }}</td>
+                    <td>{{ record[9] }}</td>
+                    <td>{{ record[10] }}</td>
+                    <td>{{ record[11] }}</td>
+                    <td>{{ record[12] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <!-- Add AWB Form -->
+        <h4>Add New AWB</h4>
+        <form action="/add_awb" method="POST">
+            <div class="mb-3">
+                <label class="form-label">MAWB</label>
+                <input type="text" class="form-control" name="MAWB" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">AWB Date</label>
+                <input type="date" class="form-control" name="AWB_date" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Freight Forwarder</label>
+                <input type="text" class="form-control" name="freight_fordwarder" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Amount</label>
+                <input type="number" step="0.01" class="form-control" name="Amount" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Currency</label>
+                <input type="text" class="form-control" name="Currency" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Supplier</label>
+                <input type="text" class="form-control" name="Supplier" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Goods Types</label>
+                <input type="text" class="form-control" name="Goods_types" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Clearance</label>
+                <input type="text" class="form-control" name="Clearance" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Number of Boxes</label>
+                <input type="number" class="form-control" name="Number_of_boxes" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Weight</label>
+                <input type="number" step="0.01" class="form-control" name="Weight" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Unit of Measure</label>
+                <input type="text" class="form-control" name="Unit_of_measure" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Volumetric Weight</label>
+                <input type="number" step="0.01" class="form-control" name="Volumetric_weight" required>
+            </div>
+            <button type="submit" class="btn btn-success">Add AWB</button>
+        </form>
+    </div>
+</body>
+</html>
